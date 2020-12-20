@@ -1,0 +1,17 @@
+[Unit]
+Description=Tank manager
+After= multi-user.target
+
+[Service]
+WorkingDirectory=/home/pi/services
+ExecStart=/usr/bin/python3 tankmanager.py
+StandardOutput=inherit
+StandardError=inherit
+User=pi
+TimeoutStartSec=0
+Restart=on-failure
+StartLimitInterval=60
+StartLimitBurst=3
+
+[Install]
+WantedBy=multi-user.target

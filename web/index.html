@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dealer</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Tank manager">
+    <meta name"keyword" content="Tank manager">
+  </head>
+  <body>
+    <h1>Tank Manager</h1>
+    <div>
+      <button type="submit" onclick="restart_service_tank_manager()">restart service tank manager</button>
+      <div id="output"></div>
+    </div>
+    <div>
+      <button type="submit" onclick="restart_raspberry_pi()">restart raspberry pi</button>
+      <div id="output"></div>
+    </div>
+    <script>
+      const output = document.getElementById("output")
+      function restart_service_tank_manager() {
+        output.innerText = 'En cours'
+        fetch('/tank-service')
+          .then(() => output.innerText = 'Fini')
+          .catch(() => output.innerText = 'Erreur')
+      }
+      function restart_raspberry_pi() {
+        output.innerText = 'En cours'
+        fetch('/reboot')
+          .then(() => output.innerText = 'Fini')
+          .catch(() => output.innerText = 'Erreur')
+      }
+    </script>
+  </body>
+</html>
